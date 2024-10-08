@@ -5,13 +5,11 @@ idades = []
 alturas = []
 pesos = []
 sobrenomes = []
-lista_imc = []
 
 # Função sem retorno.
 def logoSenai():
     os.system("cls || clear")
     print("=== SENAI === ")
-
 
 # Solicitando os dados dos usuários em um loop
 while True:
@@ -37,31 +35,32 @@ while True:
 #Funções com retorno
 def calculo_imc(a,b):
     lista_imc = []
-    for i,peso in enumerate(a) :
-        imc = peso/b[i]**2
+    for i,peso in enumerate(a):
+        imc = peso/ b[i] **2
         lista_imc.append(imc)
     return lista_imc
-
-
 
 lista_imc = calculo_imc(pesos, alturas)
 
 def interpretando_imc(a):
+    interpretacoes = []
     for numero in a:
         if numero < 18.5:
-            print("Abaixo do peso")
-        elif numero >= 18.5 or numero < 25:
-            print("Peso normal")
-        elif numero >= 25 or numero < 30:
-            print("Sobrepeso")
-        elif numero >= 30 or numero < 35:
-            print("Obesidade grau I")
-        elif numero >=35 or numero < 40:
-            print("Obesidade grau II")
+            interpretacoes.append("Abaixo do peso")
+        elif numero >= 18.5 and numero < 25:
+            interpretacoes.append("Peso normal")
+        elif numero >= 25 and numero < 30:
+            interpretacoes.append("Sobrepeso")
+        elif numero >= 30 and numero < 35:
+            interpretacoes.append("Obesidade grau I")
+        elif numero >=35 and numero < 40:
+            interpretacoes.append("Obesidade grau II")
         elif numero >= 40:
-            print("Obesidade grau III")
+            interpretacoes.append("Obesidade grau III")
+    return interpretacoes
 
-interpretando_imc(lista_imc)
+interpretacoes = interpretando_imc(lista_imc)
+
 
 
 
@@ -75,6 +74,6 @@ for i in range(len(nomes)):
     print("Idade:", idades[i], "anos")
     print("Altura:", alturas[i], "metros")
     print("Peso:", pesos[i], "quilogramas")
-    print("IMC: ", lista_imc[i])
-    interpretando_imc(lista_imc[i])
+    print(f"IMC: {lista_imc[i]:.2f}")
+    print("Situação:", interpretacoes[i])
     
